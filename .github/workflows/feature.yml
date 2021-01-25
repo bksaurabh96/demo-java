@@ -19,9 +19,19 @@ jobs:
       run: echo "This is build"
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: echo "This is deploy"
+  
+  job3:
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: echo "This is job3"
